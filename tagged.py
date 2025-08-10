@@ -1,12 +1,17 @@
-from time import sleep
-from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-# Create a Chrome WebDriver instance
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
 
-driver = webdriver.Chrome()
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-gpu')
+
+driver = webdriver.Chrome(options=chrome_options)
 
 # Navigate to a webpage (replace with your target URL)
 driver.get("https://m.tagged.com/login/sign-in")
