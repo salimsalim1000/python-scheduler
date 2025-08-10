@@ -3,6 +3,7 @@ name: Run Tagged Bot every 30 minutes
 on:
   schedule:
     - cron: "*/30 * * * *"  # Every 30 minutes (UTC)
+  workflow_dispatch:  # Optional: lets you run manually from GitHub UI
 
 jobs:
   run-bot:
@@ -10,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -23,6 +24,9 @@ jobs:
           sudo apt install -y chromium-browser
           pip install selenium
 
-      - name: Run bot script
+      - name: Run bot
+        env:
+          TAGGED_EMAIL: ${{ secrets.TAGGED_EMAIL }}
+          TAGGED_PASSWORD: ${{ secrets.TAGGED_PASSWORD }}
         run: |
           python tagged_bot.py
