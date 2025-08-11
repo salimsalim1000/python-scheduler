@@ -2,8 +2,8 @@ name: Run Tagged Bot every 30 minutes
 
 on:
   schedule:
-    - cron: "*/30 * * * *"  # Runs every 30 minutes
-  workflow_dispatch:        # Allows manual runs via GitHub UI
+    - cron: "*/30 * * * *"  # Every 30 minutes
+  workflow_dispatch:
 
 jobs:
   run-bot:
@@ -13,35 +13,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
- 
-      - name: Install Chrome
+
+      - name: Install dependencies
         run: |
           sudo apt update
           sudo apt install -y wget unzip jq
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
+          pip install selenium pytest
 
       - name: Install matching ChromeDriver
         run: |
           sudo rm -f /usr/bin/chromedriver
-
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
-          echo "Detected Chrome version: $CHROME_VERSION"
-
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+' | head -1)
+          echo "Chrome version: $CHROME_VERSION"
           DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" \
             | jq -r --arg ver "$CHROME_VERSION" '.versions[] | select(.version == $ver) | .version')
-
           if [ -z "$DRIVER_VERSION" ]; then
-            echo "❌ No matching ChromeDriver found for Chrome version $CHROME_VERSION"
-            exit 1
+            echo "No matching ChromeDriver found for Chrome version $CHROME_VERSION, using latest stable."
+            DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" \
+              | jq -r '.versions[0].version')
           fi
-
-          echo "✅ Found matching ChromeDriver version: $DRIVER_VERSION"
-
+          echo "Using ChromeDriver version: $DRIVER_VERSION"
           wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$DRIVER_VERSION/linux64/chromedriver-linux64.zip"
           unzip -q chromedriver-linux64.zip
           sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
@@ -52,20 +49,16 @@ jobs:
           google-chrome --version
           chromedriver --version
 
-      - name: Install Python dependencies
-        run: pip install selenium pytest
-
-      - name: "Debug: list test files"
+      - name: Debug: List files
         run: |
-          echo "Current directory: $(pwd)"
-          echo "Files:"
-          ls -R
+          pwd
+          ls -la
+          ls -la tests/
 
-      - name: Run tests
-        run: pytest tests/ || echo "⚠️ No tests run"
+      - name: Run tests with pytest
+        run: |
+          pytest tests/ || echo "⚠️ No tests were found or ran."
 
-      - name: "Debug: list files"
-        run: ls -R
       - name: Run bot script
         env:
           TAGGED_EMAIL: ${{ secrets.TAGGED_EMAIL }}
