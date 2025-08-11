@@ -21,7 +21,7 @@ driver = webdriver.Chrome(options=chrome_options)
 # Go to login page
 driver.get("https://m.tagged.com/login/sign-in")
 sleep(4)
-
+driver.execute_cdp_cmd("Emulation.setPageScaleFactor", {"pageScaleFactor": 0.25})
 # Login form
 email_input = driver.find_element(By.NAME, 'username')
 email_input.send_keys(email)
