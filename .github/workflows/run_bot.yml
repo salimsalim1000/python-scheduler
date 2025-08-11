@@ -47,7 +47,7 @@ jobs:
 
       - name: Verify versions
         run: |
-          google-chrome --version
+          google-chrome --version 
           chromedriver --version
 
       - name: Install Python dependencies
