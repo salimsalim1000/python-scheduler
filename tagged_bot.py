@@ -41,7 +41,7 @@ sleep(10)
 
 driver.save_screenshot("screenshot.png")
 # Repeat message logic
-for _ in range(4):
+for _ in range(1):
     elements = driver.find_elements(By.CLASS_NAME, 'icon-message-on')
     filename = f"afterlogin_{_}.png"
     driver.save_screenshot(filename)
