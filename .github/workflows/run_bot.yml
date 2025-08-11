@@ -51,7 +51,10 @@ jobs:
           chromedriver --version
 
       - name: Install Python dependencies
-        run: pip install selenium
+        run: pip install selenium pytest
+
+      - name: Run tests
+        run: pytest tests/
 
       - name: Run bot script
         env:
