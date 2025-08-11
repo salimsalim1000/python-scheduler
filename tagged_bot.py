@@ -28,10 +28,10 @@ email_input.send_keys(email)
 
 password_input = driver.find_element(By.NAME, 'password')
 password_input.send_keys(password)
-
+driver.save_screenshot("beforelogin.png")
 login_button = driver.find_element(By.CLASS_NAME, 'login')
 login_button.click()
-
+driver.save_screenshot("afterlogin.png")
 # Go to browse page
 driver.get("https://m.tagged.com/browse")
 sleep(10)
@@ -79,5 +79,5 @@ for _ in range(4):
     except:
         print("No more pages or 'Next' button not found.")
         break
-
+driver.save_screenshot("lastthing.png")
 driver.quit()
