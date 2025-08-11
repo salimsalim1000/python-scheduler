@@ -43,3 +43,10 @@ jobs:
           TAGGED_EMAIL: ${{ secrets.TAGGED_EMAIL }}
           TAGGED_PASSWORD: ${{ secrets.TAGGED_PASSWORD }}
         run: python tagged_bot.py
+
+      - name: Upload screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot
+          path: screenshot.png
