@@ -49,7 +49,7 @@ jobs:
           google-chrome --version
           chromedriver --version
 
-      - name: "Debug: List files "
+      - name: "Debug: List files"
         run: |
           pwd
           ls -la
@@ -57,7 +57,7 @@ jobs:
 
       - name: Run tests with pytest
         run: |
-          pytest tests/ || echo "⚠️ No tests were found or ran."
+          pytest tests/ || echo " ⚠️ No tests were found or ran."
 
       - name: Run bot script
         env:
