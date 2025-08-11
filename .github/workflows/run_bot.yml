@@ -29,7 +29,9 @@ jobs:
         run: |
           sudo rm -f /usr/bin/chromedriver
 
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+' | head -1)
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+' | head -1)
+          echo "Detected Chrome version: $CHROME_VERSION"
+
           DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" \
             | jq -r --arg ver "$CHROME_VERSION" '.versions[] | select(.version == $ver) | .version')
 
@@ -47,13 +49,13 @@ jobs:
 
       - name: Verify versions
         run: |
-          google-chrome --version 
+          google-chrome --version
           chromedriver --version
 
       - name: Install Python dependencies
         run: pip install selenium pytest
 
-      - name: "Debug: list test files "
+      - name: Debug: list test files
         run: |
           echo "Current directory: $(pwd)"
           echo "Files:"
