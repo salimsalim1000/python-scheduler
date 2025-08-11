@@ -34,7 +34,11 @@ login_button.click()
 
 # Go to browse page
 driver.get("https://m.tagged.com/browse")
-sleep(3)
+sleep(10)
+
+driver.get("https://m.tagged.com/browse")
+sleep(10)
+
 driver.save_screenshot("screenshot.png")
 # Repeat message logic
 for _ in range(4):
