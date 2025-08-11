@@ -31,11 +31,11 @@ password_input.send_keys(password)
 driver.save_screenshot("beforelogin.png")
 login_button = driver.find_element(By.CLASS_NAME, 'login')
 login_button.click()
-driver.save_screenshot("afterlogin.png")
+
 # Go to browse page
 driver.get("https://m.tagged.com/browse")
 sleep(10)
-
+driver.save_screenshot("afterlogin.png")
 driver.get("https://m.tagged.com/browse")
 sleep(10)
 
