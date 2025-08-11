@@ -1,3 +1,10 @@
+name: Run Tagged Bot every 30 minutes
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"  # Runs every 30 minutes
+  workflow_dispatch:        # Allows manual runs via GitHub UI
+
 jobs:
   run-bot:
     runs-on: ubuntu-latest
@@ -22,11 +29,7 @@ jobs:
         run: |
           sudo rm -f /usr/bin/chromedriver
 
-          # Get the installed Chrome version (major.minor.build)
           CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+' | head -1)
-          echo "Installed Chrome version: $CHROME_VERSION"
-
-          # Fetch matching driver version for that Chrome version
           DRIVER_VERSION=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" \
             | jq -r --arg ver "$CHROME_VERSION" '.versions[] | select(.version == $ver) | .version')
 
@@ -37,13 +40,12 @@ jobs:
 
           echo "✅ Found matching ChromeDriver version: $DRIVER_VERSION"
 
-          # Download and install the matching ChromeDriver
           wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$DRIVER_VERSION/linux64/chromedriver-linux64.zip"
           unzip -q chromedriver-linux64.zip
           sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
           sudo chmod +x /usr/bin/chromedriver
 
-      - name: Verify installed versions (for debugging)
+      - name: Verify versions
         run: |
           google-chrome --version
           chromedriver --version
