@@ -52,16 +52,16 @@ jobs:
 
       - name: Install Python dependencies
         run: pip install selenium pytest
-      
+
       - name: Debug: list test files
         run: |
           echo "Current directory: $(pwd)"
           echo "Files:"
           ls -R
-      
+
       - name: Run tests
         run: pytest tests/ || echo "⚠️ No tests run"
-        
+
       - name: Run bot script
         env:
           TAGGED_EMAIL: ${{ secrets.TAGGED_EMAIL }}
