@@ -56,6 +56,9 @@ jobs:
       - name: Run tests
         run: pytest tests/
 
+      - name: Show test files
+        run: ls -R tests
+        
       - name: Run bot script
         env:
           TAGGED_EMAIL: ${{ secrets.TAGGED_EMAIL }}
