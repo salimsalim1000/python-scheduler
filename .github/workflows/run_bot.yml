@@ -49,7 +49,7 @@ jobs:
           google-chrome --version
           chromedriver --version
 
-      - name: "Debug: List files"
+      - name: "Debug: List files "
         run: |
           pwd
           ls -la
