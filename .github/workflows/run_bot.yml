@@ -35,7 +35,7 @@ jobs:
           if [ -d "tests/" ] && [ -n "$(find tests/ -name "*.py" -type f)" ]; then
             pytest tests/ -v
           else
-            echo "⚠️  No tests found, skipping."
+            echo "⚠️ No tests found, skipping."
           fi
           
       - name: Run bot script
