@@ -44,9 +44,4 @@ jobs:
           TAGGED_PASSWORD: ${{ secrets.TAGGED_PASSWORD }}
         run: python tagged_bot.py
 
-      - name: Upload screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: tagged_bot_screenshots
-          path: "*.png"
+    
