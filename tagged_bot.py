@@ -29,22 +29,22 @@ email_input.send_keys(email)
 
 password_input = driver.find_element(By.NAME, 'password')
 password_input.send_keys(password)
-driver.save_screenshot("beforelogin.png")
+ 
 login_button = driver.find_element(By.CLASS_NAME, 'login')
 login_button.click()
 
 # Go to browse page
 driver.get("https://m.tagged.com/browse")
 sleep(10)
-driver.save_screenshot("afterlogin.png")
+ 
 driver.get("https://m.tagged.com/browse")
 sleep(10)
 
-driver.save_screenshot("screenshot.png")
+ 
 # Repeat message logic
 for _ in range(3):
     elements = driver.find_elements(By.CLASS_NAME, 'icon-message-on')
-    driver.save_screenshot(f"PICPAGE_{_}.png")
+     
     if elements:
         for i in elements:
             sleep(2)
@@ -80,5 +80,5 @@ for _ in range(3):
     except:
         print("No more pages or 'Next' button not found.")
         break
-driver.save_screenshot("lastthing.png")
+ 
 driver.quit()
