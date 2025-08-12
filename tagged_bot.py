@@ -6,7 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
-# ⛔ DO NOT hardcode sensitive info
+# ⛔ DO NOT hardco  de sensitive info
 email = os.getenv("TAGGED_EMAIL")
 password = os.getenv("TAGGED_PASSWORD")
 
