@@ -52,7 +52,7 @@ for _ in range(3):
                 i.click()
                 sleep(2)
 
-                # Wait for the message textarea to appear
+                # Wait for the mess age textarea to appear
                 textarea = WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable(
                         (By.XPATH, "/html/body/div[1]/div/div[2]/div/div/div/div[1]/div[3]/div/div/form/div/textarea"))
