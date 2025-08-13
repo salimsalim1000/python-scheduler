@@ -1,7 +1,7 @@
 name: Run Tagged Bot every 30 minutes
 on:
   schedule:
-    - cron: "*/30 * * * *"  # E very 30 minutes
+    - cron: "*/30 * * * *"  # E ver y 30 minutes
   workflow_dispatch:
 
 jobs:
