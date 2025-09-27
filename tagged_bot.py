@@ -58,7 +58,7 @@ for _ in range(3):
                     EC.element_to_be_clickable(
                         (By.XPATH, "/html/body/div[1]/div/div[2]/div/div/div/div[1]/div[3]/div/div/form/div/textarea"))
                 )
-                textarea.send_keys("hi bb dominant or submissive ")
+                textarea.send_keys("hi honey .... dominant or submissive ?? ")
 
                 # Click send
                 sendit = WebDriverWait(driver, 10).until(
