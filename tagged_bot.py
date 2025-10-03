@@ -11,6 +11,9 @@ from time import sleep
 email = os.getenv("TAGGED_EMAIL")
 password = os.getenv("TAGGED_PASSWORD")
 
+print(">>> Script started")
+print("EMAIL:", os.getenv("TAGGED_EMAIL"))
+print("PWD length:", len(os.getenv("TAGGED_PASSWORD") or ""))
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-dev-shm-usage')
