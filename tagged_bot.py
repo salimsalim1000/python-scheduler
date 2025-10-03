@@ -6,14 +6,14 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 import chromedriver_autoinstaller
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+
+
 
 # install matching chromedriver
 chromedriver_autoinstaller.install()
 
 
-driver = webdriver.Chrome(options=chrome_options)
+
 
 # ⛔ DO NOT hardco  de sensitive info
 email = os.getenv("TAGGED_EMAIL")
