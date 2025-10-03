@@ -5,12 +5,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
-import chromedriver_autoinstaller
+
 
 
 
 # install match ing chromedriver
-chromedriver_autoinstaller.install()
+
 
 
 
