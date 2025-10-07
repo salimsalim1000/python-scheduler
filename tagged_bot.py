@@ -15,7 +15,7 @@ from time import sleep
 
 
 
-# ⛔ DO NOT hardco  de sensitive info
+# ⛔ DO NOT hardcode sensitive info
 email = os.getenv("TAGGED_EMAIL")
 password = os.getenv("TAGGED_PASSWORD")
 
@@ -70,7 +70,7 @@ for _ in range(3):
                         (By.XPATH, "/html/body/div[1]/div/div[2]/div/div/div/div[1]/div[3]/div/div/form/div/textarea"))
                 )
                # textarea.send_keys("hi honey .... dominant or submissive ?? ")
-                textarea.send_keys("i want suc k u hard ")
+                textarea.send_keys("i want suc k u hard....")
                 # Click send
                 sendit = WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable(
